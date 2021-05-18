@@ -9,8 +9,7 @@ commands:
       - run:
           name: Setup Environment
           command: |
-            VERSION=$(npm run env | grep npm_package_version | cut -d '=' -f 2)
-            TAG=$VERSION
+            TAG=1.0.0
             IMAGE_NAME="$CIRCLE_PROJECT_REPONAME"
             echo "export VERSION=$VERSION" >> $BASH_ENV
             echo "export IMAGE_NAME=$IMAGE_NAME" >> $BASH_ENV
@@ -24,6 +23,8 @@ jobs:
     steps:
       - checkout
       - setup_variable
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: Build docker image
           command: docker build -t $IMAGE_NAME .
@@ -49,8 +50,8 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
-          context: agm-shared-ecr
+          context: github-shared-token
           filters:
             branches:
               only:
-                - release
+                - fix/fix-token
