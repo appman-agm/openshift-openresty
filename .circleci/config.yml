@@ -15,7 +15,6 @@ commands:
             echo "export VERSION=$VERSION" >> $BASH_ENV
             echo "export IMAGE_NAME=$IMAGE_NAME" >> $BASH_ENV
             echo "export TAG=$TAG" >> $BASH_ENV
-
 jobs:
   build:
     working_directory: ~/openshift-openresty
@@ -50,7 +49,7 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
-          context: agm-shared-ecr
+          # context: agm-shared-ecr
           filters:
             branches:
               only:
