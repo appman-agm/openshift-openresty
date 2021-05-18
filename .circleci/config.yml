@@ -50,7 +50,7 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
-          # context: agm-shared-ecr
+          context: github-shared-token
           filters:
             branches:
               only:
