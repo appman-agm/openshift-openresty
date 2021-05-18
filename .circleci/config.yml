@@ -54,4 +54,4 @@ workflows:
           filters:
             branches:
               only:
-                - fix/fix-token
+                - release
